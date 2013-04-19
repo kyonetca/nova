@@ -25,36 +25,35 @@
 
 #include "global_constants.h"
 #include "exception.h"
-
+#include "route.h"
 #include "network.h"
 
 NovaGroup G_GroupID;
-NovaClient *G_Target;
 void (*G_Callback)(NovaClient);
 
-void FindGroupMember(NovaGroup GroupID, NovaClient *Target) {
-
+NovaClient FindGroupMember(NovaGroup GroupID) {
+	NovaClient cl;
+	return cl;
 }
 
 // int pthread_create( pthread_t *thread, const pthread_attr_t *attribute, void *(*funktion)(void *), void *argumente );
 
 void *FindGroupMemberSync(void * par) {
 	void (*tmp)(NovaClient) = G_Callback;
-	FindGroupMember(G_GroupID, G_Target);
-	tmp(*G_Target);
+	tmp(FindGroupMember(G_GroupID));
 
 	return null;
 }
 
-void FindGroupMemberAsync(NovaGroup GroupID, NovaClient *Target, void (*AsyncCallback)(NovaClient)) {
-	pthread_t async;
+void FindGroupMemberAsync(NovaGroup GroupID, void (*AsyncCallback)(NovaClient)) {
 	G_GroupID = GroupID;
-	G_Target = Target;
 	G_Callback = AsyncCallback;
 
 	if (pthread_create(&async, null, &FindGroupMemberSync, null) == -1) {
 		ThrowException(FAILED_TO_CREATE_THREAD, LEVEL_ERROR, "Failed to create Thread", "FindGroupMemberAsync");
 		return;
 	}
+
+	
 }
 

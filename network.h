@@ -26,6 +26,9 @@
 
 #define DEFAULT_PORT 3726
 
+#ifndef NOVA_STRUCTS
+#define NOVA_STRUCTS
+
 typedef struct {
 	long ID;
 	short Encrypted, Private;
@@ -39,9 +42,11 @@ typedef struct {
 	struct NovaClient *Previous;
 } NovaClient;
 
+#endif
+
 void NetworkInitialize();
 
-void JoinGroup(NovaGroup Group, long GroupName, int Encypted, int Private);
+NovaGroup JoinGroup(NovaGroup Group, long GroupName, int Encrypted, int Private);
 
 int LeaveGroup(NovaGroup GroupID);
 

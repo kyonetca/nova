@@ -18,9 +18,30 @@
 
 */
 
+// Boolean Datatype
 #define bool short;
 #define true 1
 #define false 0
+
+// Debug Level
+#define DEBUG_DEFAULT 0x1
+#define DD DEBUG_DEFAULT
+
+#define DEBUG_VERBOSE 0x2
+#define DV DEBUG_VERBOSE
+
+#define DEBUG_LOGGING 0x4
+#define DL DEBUG_LOGGING
+
+#define DEBUG_INTERNAL 0x8
+#define DI DEBUG_INTERNAL
+
+#define DEBUG_ALL 0xF
+#define DA DEBUG_ALL
+
+#define DEBUG_PRI 0xF
+#define DEBUG_INT 0xC
+#define DEBUG_VER 0xE
 
 // Prints out a Program info / License Info Message
 void PrintWelcomeMessage();
@@ -34,3 +55,9 @@ int *GetIntMemory(size_t Size);
 int GetTotalAllocatedSpace();
 
 void FreeMemory(void *Data);
+
+void Print(char *Message);
+
+void PrintE(char *Message);
+
+void SetDebugLevel(int DebugLevel);

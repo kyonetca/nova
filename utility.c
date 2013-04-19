@@ -24,6 +24,7 @@
 
 #include "global_constants.h"
 #include "exception.h"
+#include "utility.h"
 
 int TotalAllocatedMemory = 0;
 
@@ -48,7 +49,7 @@ char *GetCharMemory(size_t Size) {
 	return (char *)GetVoidMemory(Size);
 }
 
-void *GetIntMemory(size_t Size) {
+int *GetIntMemory(size_t Size) {
 	return (int *)GetVoidMemory(Size);
 }
 
@@ -64,3 +65,12 @@ void FreeMemory(void *Data) {
 	TotalAllocatedMemory -= sizeof(Data);
 	free(Data);
 }
+
+void Print(char *Message) {
+	fprintf(stdout, "%s\n", Message);
+}
+
+void PrintE(char *Message) {
+	fprintf(stderr, "%s\n", Message);
+}
+

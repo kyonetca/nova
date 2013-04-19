@@ -21,19 +21,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <pthread.h>
 
 #include "global_constants.h"
 #include "exception.h"
 #include "network.h"
+#include "route.h"
+#include "utility.h"
+
+void Finished(NovaClient client) {
+	Print("Hello World!");
+}
 
 void NetworkInitialize() {	
 	ThrowException(TYPE_NOT_IMPLEMENTED, LEVEL_FATAL_ERROR, "Function NetworkInitialize is not implemented yet.", "NetworkInitialize");
+	NovaGroup connect;
+	
+	connect = JoinGroup(connect, CONNECT_GROUP, false, false);
+
+
+	FindGroupMemberAsync(connect, Finished);
+	pthread_join(async, NULL);
+	Print("Good Bye");
 }
 
-void JoinGroup(NovaGroup Group, long GroupName, int Encrypted, int Private) {
+NovaGroup JoinGroup(NovaGroup Group, long GroupName, int Encrypted, int Private) {
 	Group.ID = GroupName;
 	Group.Encrypted = Encrypted;
 	Group.Private = Private;
+	return Group;
 }
 
 int LeaveGroup(NovaGroup GroupID) {

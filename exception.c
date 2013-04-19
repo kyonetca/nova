@@ -86,7 +86,7 @@ void InternalExceptionHandler(ExceptionType Type, ExceptionLevel Level, Exceptio
 		break;
 	}
 
-	fprintf(stderr, "%s\n", errmsg);
+	PrintE(errmsg);
 }
 
 int SetExceptionCallback(void (*Func)(ExceptionType, ExceptionLevel, ExceptionMessage, ExceptionStacktrace)) {

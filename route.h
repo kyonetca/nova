@@ -20,6 +20,10 @@
 
 #include "network.h"
 
+#define CONNECT_GROUP 0x0000000000
+
 NovaClient FindGroupMember(NovaGroup GroupID);
 
-void FindGroupMemberAsync(NovaGroup GroupID, NovaClient Target, void (*AsyncCallback));
+void FindGroupMemberAsync(NovaGroup GroupID, void (*AsyncCallback)(NovaClient));
+
+pthread_t async;
