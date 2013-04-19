@@ -3,9 +3,9 @@ CC = gcc
 RM = rm -f
 
 #CFLAGS = -c -I/usr/include/mysql -ggdb -pipe -fdebug-prefix-map=/usr/src/ports/mysql/mysql-5.5.28-1/build=/usr/src/debug/mysql-5.5.28-1 -fdebug-prefix-map=/usr/src/ports/mysql/mysql-5.5.28-1/src/mysql-5.5.28=/usr/src/debug/mysql-5.5.28-1 -g
-CFLAGS = -c 
+CFLAGS = -c
 #LIBS = -L/usr/lib -lmysqlclient -lz -lssl -lcrypto
-LIBS = -L/usr/lib -lz
+LIBS = -pthread
 
 WARNINGS = -Wall
 
